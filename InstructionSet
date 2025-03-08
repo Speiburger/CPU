@@ -1,0 +1,124 @@
+LDA: Load register A
+    2 byte: Instruction; Value
+        PCO | MARI
+        MO | AI | INC
+    3 byte: Instruction; Memory address MSB; Memory address LSB
+        PCO | MARI
+        MO | DI | INC
+        PCO | MARI
+        MO | CI | INC
+        CDO | MARI
+        MO | AI
+LDB: Load register B
+    2 byte: Instruction; Value
+        PCO | MARI
+        MO | BI | INC
+    3 byte: Instruction; Memory address MSB; Memory address LSB
+        PCO | MARI
+        MO | DI | INC
+        PCO | MARI
+        MO | CI | INC
+        CDO | MARI
+        MO | BI
+
+STA: STore A
+    3 byte: Instruction; Memory address MSB; Memory address LSB
+        PCO | MARI
+        MO | DI | INC
+        PCO | MARI
+        MO | CI | INC
+        CDO | MARI
+        MI | AO
+STB: STore B
+    3 byte: Instruction; Memory address MSB; Memory address LSB
+        PCO | MARI
+        MO | DI | INC
+        PCO | MARI
+        MO | CI | INC
+        CDO | MARI
+        MI | BO
+
+SWP: SWaP a and b
+    1 byte: Instruction
+        AO | CI
+        BO | AI
+        BI | CO
+ATC: move A To C
+    1 byte: Instruction
+        AO | CI
+ATD: move A To D
+    1 byte: Instruction
+        AO | DO
+
+JMP: JuMP
+    3 byte: Instruction; Memory address MSB; Memory address LSB
+        PCO | MARI
+        MO | DI | INC
+        PCO | MARI
+        MO | CI
+        CDO | PCI
+JMZ: JuMp if Zero
+    3 byte: Instruction; Memory address MSB; Memory address LSB
+        if zero flag set:
+            PCO | MARI
+            MO | DI | INC
+            PCO | MARI
+            MO | CI
+            CDO | PCI
+        else:
+            INC
+            INC
+JMC: JuMp if Carry
+    3 byte: Instruction; Memory address MSB; Memory address LSB
+        if carry flag set:
+            PCO | MARI
+            MO | DI | INC
+            PCO | MARI
+            MO | CI
+            CDO | PCI
+        else:
+            INC
+            INC
+JMN: JuMp if Negative
+    3 byte: Instruction; Memory address MSB; Memory address LSB
+        if negative flag set:
+            PCO | MARI
+            MO | DI | INC
+            PCO | MARI
+            MO | CI
+            CDO | PCI
+        else:
+            INC
+            INC
+
+JSR: Jump to SubRoutine
+    3 byte: Instruction; Memory address MSB; Memory address LSB
+        PCO | MARI
+        MO | DI | INC
+        PCO | MARI
+        MO | CI | INC
+        SPO | MARI
+        PC_L und PC_H müssen einzeln an den Bus angeschlossen werden!! 
+RTS: ReTurn from Subroutine
+    1 byte: Instruction
+
+ADD: ADD a and b
+    1 byte: Instruction
+SUB: SUBtract b from a
+    1 byte: Instruction
+
+SHL: SHift Left
+    1 byte: Instruction
+NOT: NOT a
+    1 byte: Instruction
+AND: a AND b
+    1 byte: Instruction
+XOR: a XOR b
+    1 byte: Instruction
+OR: a OR b
+    1 byte: Instruction
+
+PSH: PuSH a to stack
+    1 byte: Instruction
+POP: POP from stack into a
+    1 byte: Instruction
