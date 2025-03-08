@@ -98,9 +98,18 @@ JSR: Jump to SubRoutine
         PCO | MARI
         MO | CI | INC
         SPO | MARI
-        PC_L und PC_H müssen einzeln an den Bus angeschlossen werden!! 
+        PCHO | MI | SPDEC
+        SPO | MARI
+        PCLO | MI | SPDEC
+        CDO | PCI
 RTS: ReTurn from Subroutine
     1 byte: Instruction
+    	SPINC 
+    	SPO | MARI
+    	MO | CI | SPINC
+    	SPO | MARI
+    	MO | DI 
+    	CDO | PCI
 
 ADD: ADD a and b
     1 byte: Instruction
@@ -120,5 +129,9 @@ OR: a OR b
 
 PSH: PuSH a to stack
     1 byte: Instruction
+    	SPO | MARI
+    	AO | MI | SPDEC
 POP: POP from stack into a
     1 byte: Instruction
+    	SPO | MARI
+    	AI | MO | SPINC
