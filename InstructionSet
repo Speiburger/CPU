@@ -113,19 +113,26 @@ RTS: ReTurn from Subroutine
 
 ADD: ADD a and b
     1 byte: Instruction
+        S0 | S3 | CI | ALO | AI | FU
 SUB: SUBtract b from a
     1 byte: Instruction
+        S1 | S2 | ALO | AI | FU
 
 SHL: SHift Left
     1 byte: Instruction
+        S2 | S3 | CI | ALO | AI | FU
 NOT: NOT a
     1 byte: Instruction
+        M | ALO | AI | FU
 AND: a AND b
     1 byte: Instruction
+        M | S3 | S1 | S0 | ALO | AI | FU
 XOR: a XOR b
     1 byte: Instruction
+        M | S2 | S1 | ALO | AI | FU
 OR: a OR b
     1 byte: Instruction
+        S3 | S2 | S1 | M | ALO | AI | FU
 
 PSH: PuSH a to stack
     1 byte: Instruction
