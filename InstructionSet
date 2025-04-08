@@ -1,8 +1,8 @@
 LDA: Load register A
-    2 byte: Instruction; Value
+    2 byte: Instruction; Value | 1
         PCO | MARI
         MO | AI | INC
-    3 byte: Instruction; Memory address MSB; Memory address LSB
+    3 byte: Instruction; Memory address MSB; Memory address LSB | 2
         PCO | MARI
         MO | DI | INC
         PCO | MARI
@@ -10,10 +10,10 @@ LDA: Load register A
         CDO | MARI
         MO | AI
 LDB: Load register B
-    2 byte: Instruction; Value
+    2 byte: Instruction; Value | 3
         PCO | MARI
         MO | BI | INC
-    3 byte: Instruction; Memory address MSB; Memory address LSB
+    3 byte: Instruction; Memory address MSB; Memory address LSB | 4
         PCO | MARI
         MO | DI | INC
         PCO | MARI
@@ -22,7 +22,7 @@ LDB: Load register B
         MO | BI
 
 STA: STore A
-    3 byte: Instruction; Memory address MSB; Memory address LSB
+    3 byte: Instruction; Memory address MSB; Memory address LSB | 5
         PCO | MARI
         MO | DI | INC
         PCO | MARI
@@ -30,7 +30,7 @@ STA: STore A
         CDO | MARI
         MI | AO
 STB: STore B
-    3 byte: Instruction; Memory address MSB; Memory address LSB
+    3 byte: Instruction; Memory address MSB; Memory address LSB | 6
         PCO | MARI
         MO | DI | INC
         PCO | MARI
@@ -39,26 +39,26 @@ STB: STore B
         MI | BO
 
 SWP: SWaP a and b
-    1 byte: Instruction
+    1 byte: Instruction | 7
         AO | CI
         BO | AI
         BI | CO
 ATC: move A To C
-    1 byte: Instruction
+    1 byte: Instruction | 8
         AO | CI
 ATD: move A To D
-    1 byte: Instruction
-        AO | DO
+    1 byte: Instruction | 9
+        AO | DI
 
 JMP: JuMP
-    3 byte: Instruction; Memory address MSB; Memory address LSB
+    3 byte: Instruction; Memory address MSB; Memory address LSB | 10
         PCO | MARI
         MO | DI | INC
         PCO | MARI
         MO | CI
         CDO | PCI
 JMZ: JuMp if Zero
-    3 byte: Instruction; Memory address MSB; Memory address LSB
+    3 byte: Instruction; Memory address MSB; Memory address LSB | 11
         if zero flag set:
             PCO | MARI
             MO | DI | INC
@@ -69,7 +69,7 @@ JMZ: JuMp if Zero
             INC
             INC
 JMC: JuMp if Carry
-    3 byte: Instruction; Memory address MSB; Memory address LSB
+    3 byte: Instruction; Memory address MSB; Memory address LSB | 12
         if carry flag set:
             PCO | MARI
             MO | DI | INC
@@ -80,7 +80,7 @@ JMC: JuMp if Carry
             INC
             INC
 JMN: JuMp if Negative
-    3 byte: Instruction; Memory address MSB; Memory address LSB
+    3 byte: Instruction; Memory address MSB; Memory address LSB | 13
         if negative flag set:
             PCO | MARI
             MO | DI | INC
@@ -92,7 +92,7 @@ JMN: JuMp if Negative
             INC
 
 JSR: Jump to SubRoutine
-    3 byte: Instruction; Memory address MSB; Memory address LSB
+    3 byte: Instruction; Memory address MSB; Memory address LSB | 14
         PCO | MARI
         MO | DI | INC
         PCO | MARI
@@ -103,7 +103,7 @@ JSR: Jump to SubRoutine
         PCLO | MI | SPDEC
         CDO | PCI
 RTS: ReTurn from Subroutine
-    1 byte: Instruction
+    1 byte: Instruction | 15
     	SPINC 
     	SPO | MARI
     	MO | CI | SPINC
@@ -112,33 +112,34 @@ RTS: ReTurn from Subroutine
     	CDO | PCI
 
 ADD: ADD a and b
-    1 byte: Instruction
+    1 byte: Instruction | 16
         S0 | S3 | CI | ALO | AI | FU
 SUB: SUBtract b from a
-    1 byte: Instruction
+    1 byte: Instruction | 17
         S1 | S2 | ALO | AI | FU
 
 SHL: SHift Left
-    1 byte: Instruction
+    1 byte: Instruction | 18
         S2 | S3 | CI | ALO | AI | FU
 NOT: NOT a
-    1 byte: Instruction
+    1 byte: Instruction | 19
         M | ALO | AI | FU
 AND: a AND b
-    1 byte: Instruction
+    1 byte: Instruction | 20
         M | S3 | S1 | S0 | ALO | AI | FU
-XOR: a XOR b
-    1 byte: Instruction
+XOR: a XOR b 
+    1 byte: Instruction | 21
         M | S2 | S1 | ALO | AI | FU
 OR: a OR b
-    1 byte: Instruction
+    1 byte: Instruction | 22
         S3 | S2 | S1 | M | ALO | AI | FU
 
 PSH: PuSH a to stack
-    1 byte: Instruction
+    1 byte: Instruction | 23
     	SPO | MARI
     	AO | MI | SPDEC
 POP: POP from stack into a
-    1 byte: Instruction
+    1 byte: Instruction | 24
+    	SPINC
     	SPO | MARI
-    	AI | MO | SPINC
+    	AI | MO
